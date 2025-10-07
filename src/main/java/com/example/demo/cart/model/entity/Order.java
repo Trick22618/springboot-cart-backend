@@ -1,19 +1,16 @@
 package com.example.demo.cart.model.entity;
 
 import java.util.List;
-import java.util.Set;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,26 +18,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "product")
-public class Product {
-
+@Table(name = "`order`")
+public class Order {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false, unique = true, length = 100)
-	private String name;
-	
-	@Column(nullable = false)
-	private Integer price;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_image_id")
-	private ProductImage productImage;
-	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	// FetchType.EAGER 查找 order 的同時會一併查找 orderItem
+	// FetchType.Lazy 查找 order 的同時不會查找 orderItem
+	// cascade 連動關係
+	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<OrderItem> orderItems;
 	
-	@ManyToMany(mappedBy = "favoriteProducts")
-	private Set<User> favoriteUsers;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 }
