@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.cart.exception.AddException;
 import com.example.demo.cart.exception.ProductNotFoundException;
@@ -13,6 +14,7 @@ import com.example.demo.cart.model.entity.ProductImage;
 import com.example.demo.cart.repository.ProductRepository;
 import com.example.demo.cart.service.ProductService;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
@@ -22,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 	private ModelMapper modelMapper;
 	
 	@Override
-	public List<ProductDTO> getAllProductDTOs() {
+	public List<ProductDTO> getAllProducts() {
 		return productRepository.findAll() // [Product]->[Product]->[Product]...
 								.stream()  // [Product]  [Product]  [Product]...
 								.map(product -> modelMapper.map(product, ProductDTO.class)) // [ProductDTO]  [ProductDTO]  [ProductDTO] ...

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.cart.exception.OrderItemEmptyExcpetion;
 import com.example.demo.cart.exception.UserNotFoundException;
@@ -16,6 +17,7 @@ import com.example.demo.cart.repository.OrderRepository;
 import com.example.demo.cart.repository.UserRepository;
 import com.example.demo.cart.service.OrderService;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired

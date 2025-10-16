@@ -8,7 +8,7 @@ import com.example.demo.cart.model.dto.ProductDTO;
 
 public interface ProductService {
 	// 取得所有商品
-	List<ProductDTO> getAllProductDTOs();
+	List<ProductDTO> getAllProducts();
 	
 	// 取得指定商品
 	ProductDTO getProductByID(Long id) throws ProductNotFoundException;
