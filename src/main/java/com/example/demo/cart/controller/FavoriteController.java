@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpSession;
  * 
  * */
 @RestController
-@RequestMapping("/favorite")
+@RequestMapping("/favorites")
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class FavoriteController {
 	
